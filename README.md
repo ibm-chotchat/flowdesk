@@ -68,8 +68,11 @@ flowdesk/
 
 ```bash
 # Clone the repository
-git clone https://github.com/pookiepew/flowdesk.git
+git clone https://github.com/ibm-chotchat/flowdesk.git
 cd flowdesk
+
+# Switch to main branch for development
+git checkout main
 
 # Install all dependencies (including workspaces)
 npm install
@@ -149,13 +152,42 @@ This project uses Prettier with the following configuration:
 - Single quotes
 - Angular HTML parser
 
+## Branching Strategy
+
+This project follows a **Git Flow** branching model:
+
+| Branch | Purpose | Protected |
+|--------|---------|:---------:|
+| `master` | Production releases (stable, deployable) | Yes |
+| `main` | Development integration | Yes |
+| `feature/*` | New features | No |
+| `bugfix/*` | Bug fixes | No |
+| `hotfix/*` | Urgent production fixes | No |
+
+### Workflow
+
+```
+master (production)
+  │
+  └── main (development)
+        │
+        ├── feature/user-auth
+        ├── feature/dashboard
+        └── bugfix/login-error
+```
+
+1. **Development** → Branch from `main`, merge back to `main`
+2. **Release** → Merge `main` into `master` for deployment
+3. **Hotfix** → Branch from `master`, merge to both `master` and `main`
+
 ## Contributing
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'feat: add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+1. Checkout the `main` branch (`git checkout main`)
+2. Pull latest changes (`git pull origin main`)
+3. Create a feature branch (`git checkout -b feature/amazing-feature`)
+4. Commit your changes (`git commit -m 'feat: add amazing feature'`)
+5. Push to the branch (`git push origin feature/amazing-feature`)
+6. Open a Pull Request → target: `main`
 
 ### Commit Convention
 
