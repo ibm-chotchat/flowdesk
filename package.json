@@ -1,12 +1,24 @@
 {
-  "name": "flowdesk",
+  "name": "flowdesk-monorepo",
   "version": "0.0.0",
+  "private": true,
+  "packageManager": "npm@11.8.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "ng": "ng",
-    "start": "ng serve",
-    "build": "ng build",
-    "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "start:frontend": "npm run start --workspace=@flowdesk/frontend",
+    "start:backend": "npm run start --workspace=@flowdesk/backend",
+    "dev": "concurrently -n fe,be -c cyan,green \"npm run start:frontend\" \"npm run start:backend\"",
+    "build:shared": "npm run build --workspace=@flowdesk/shared",
+    "build:frontend": "npm run build --workspace=@flowdesk/frontend",
+    "build:backend": "npm run build --workspace=@flowdesk/backend",
+    "build:all": "npm run build:shared && npm run build:frontend && npm run build:backend",
+    "test:frontend": "npm run test --workspace=@flowdesk/frontend",
+    "test:backend": "npm run test --workspace=@flowdesk/backend",
+    "test:all": "npm run test:frontend && npm run test:backend",
+    "clean": "rimraf apps/frontend/dist apps/backend/dist packages/shared/dist node_modules/.cache"
   },
   "prettier": {
     "printWidth": 100,
@@ -20,24 +32,8 @@
       }
     ]
   },
-  "private": true,
-  "packageManager": "npm@11.8.0",
-  "dependencies": {
-    "@angular/common": "^21.1.0",
-    "@angular/compiler": "^21.1.0",
-    "@angular/core": "^21.1.0",
-    "@angular/forms": "^21.1.0",
-    "@angular/platform-browser": "^21.1.0",
-    "@angular/router": "^21.1.0",
-    "rxjs": "~7.8.0",
-    "tslib": "^2.3.0"
-  },
   "devDependencies": {
-    "@angular/build": "^21.1.2",
-    "@angular/cli": "^21.1.2",
-    "@angular/compiler-cli": "^21.1.0",
-    "jsdom": "^27.1.0",
-    "typescript": "~5.9.2",
-    "vitest": "^4.0.8"
+    "concurrently": "^9.2.1",
+    "rimraf": "^6.1.2"
   }
 }
