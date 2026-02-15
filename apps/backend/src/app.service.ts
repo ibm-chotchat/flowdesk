@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { HealthCheck } from '@flowdesk/shared';
 
 @Injectable()
 export class AppService {
@@ -6,7 +7,7 @@ export class AppService {
     return { message: 'Hello from Flowdesk API!' };
   }
 
-  getHealth(): { status: string; timestamp: string } {
+  getHealth(): HealthCheck {
     return {
       status: 'ok',
       timestamp: new Date().toISOString(),

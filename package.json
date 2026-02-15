@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "start:frontend": "npm run start --workspace=@flowdesk/frontend",
-    "start:backend": "npm run start --workspace=@flowdesk/backend",
+    "start:backend": "npm run start:dev --workspace=@flowdesk/backend",
     "dev": "concurrently -n fe,be -c cyan,green \"npm run start:frontend\" \"npm run start:backend\"",
     "build:shared": "npm run build --workspace=@flowdesk/shared",
     "build:frontend": "npm run build --workspace=@flowdesk/frontend",
@@ -18,7 +18,10 @@
     "test:frontend": "npm run test --workspace=@flowdesk/frontend",
     "test:backend": "npm run test --workspace=@flowdesk/backend",
     "test:all": "npm run test:frontend && npm run test:backend",
-    "clean": "rimraf apps/frontend/dist apps/backend/dist packages/shared/dist node_modules/.cache"
+    "clean": "rimraf apps/frontend/dist apps/backend/dist packages/shared/dist node_modules/.cache",
+    "lint:frontend": "npm run lint --workspace=@flowdesk/frontend",
+    "lint:backend": "npm run lint --workspace=@flowdesk/backend",
+    "lint:all": "npm run lint:frontend && npm run lint:backend"
   },
   "prettier": {
     "printWidth": 100,
@@ -33,7 +36,11 @@
     ]
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
+    "angular-eslint": "^21.2.0",
     "concurrently": "^9.2.1",
-    "rimraf": "^6.1.2"
+    "eslint": "^9.39.2",
+    "rimraf": "^6.1.2",
+    "typescript-eslint": "^8.55.0"
   }
 }

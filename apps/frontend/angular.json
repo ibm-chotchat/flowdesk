@@ -64,7 +64,8 @@
               "buildTarget": "flowdesk:build:production"
             },
             "development": {
-              "buildTarget": "flowdesk:build:development"
+              "buildTarget": "flowdesk:build:development",
+              "proxyConfig": "proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
